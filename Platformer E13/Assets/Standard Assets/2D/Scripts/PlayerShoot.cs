@@ -9,6 +9,7 @@ public class PlayerShoot : MonoBehaviour {
     public GameObject gun, bullet;
     public float bulletSpeed;
     private Vector3 mouseDir;
+    private Quaternion rotation;
     float cooldown = 0;
     // Use this for initialization
     void Start () {
@@ -18,7 +19,7 @@ public class PlayerShoot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         GetDirection();
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {
             if(Cooldown(1f))
                 Shoot();
@@ -26,7 +27,7 @@ public class PlayerShoot : MonoBehaviour {
 	} 
     private void Shoot()
     {
-        var instance = Instantiate(bullet, gun.transform.position, Quaternion.identity);
+        var instance = Instantiate(bullet, gun.transform.position, rotation);
         instance.GetComponent<Rigidbody2D>().velocity = mouseDir * bulletSpeed;
     }
 
@@ -43,9 +44,18 @@ public class PlayerShoot : MonoBehaviour {
     private void GetDirection()
     {
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        rotation = Quaternion.Euler(0, 0, Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg);
 
         mouseDir = mousePos - transform.position;
         mouseDir.z = 0.0f;
         mouseDir = mouseDir.normalized;
+         
+        gun.transform.rotation = rotation;
+
+        if (!player.m_FacingRight)
+        {
+            gun.transform.Rotate(Vector3.forward * 180);
+        }
+
     }
 }
