@@ -62,7 +62,7 @@ public class PlatformerCharacter2D : MonoBehaviour
     }
 
 
-    public void Move(float move, bool crouch, bool roll, bool jump)
+    public void Move(float move, bool crouch, bool roll, bool jump, bool run)
     {
         // If crouching, check to see if the character can stand up
         if (!crouch)
@@ -78,8 +78,12 @@ public class PlatformerCharacter2D : MonoBehaviour
         if (m_Grounded || m_AirControl)
         {
             m_Anim.SetFloat("Speed", Mathf.Abs(move));
+            m_Anim.SetBool("Run", run);
             // Move the character
-            m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
+            if (run && m_Grounded)
+                m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed * 1.5f, m_Rigidbody2D.velocity.y);
+            else
+                m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
 
             //If the input is moving the player right and the player is facing left...
             if (move > 0 && !m_FacingRight)

@@ -31,9 +31,10 @@ public class Platformer2DUserControl : MonoBehaviour
         // Read the inputs.
         bool crouch = Input.GetKey(KeyCode.LeftControl);
         bool roll = Input.GetKey(KeyCode.X);
+        bool run = Input.GetKey(KeyCode.LeftShift);
         float h = CrossPlatformInputManager.GetAxis("Horizontal");
         // Pass all parameters to the character control script.
-        m_Character.Move(h, crouch, roll, m_Jump);
+        m_Character.Move(h, crouch, roll, m_Jump, run);
         m_Jump = false;
     }
 }

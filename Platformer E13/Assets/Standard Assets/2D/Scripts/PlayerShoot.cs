@@ -21,7 +21,7 @@ public class PlayerShoot : MonoBehaviour {
         GetDirection();
         if (Input.GetMouseButtonDown(0))
         {
-            if(Cooldown(1f))
+            if(Cooldown(.3f))
                 Shoot();
         }
 	} 

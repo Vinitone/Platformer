@@ -28,13 +28,19 @@ public class PlayerPull : MonoBehaviour {
         if(hit.collider != null && hit.collider.gameObject.tag == "Interactible"&& Input.GetKey(KeyCode.E) && !floatObject.floating)
         {
             box = hit.collider.gameObject;
-            box.GetComponent<FixedJoint2D>().enabled = true;
-            box.GetComponent<BoxPull>().pushed = true;
-            box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
+            if (box.GetComponent<FixedJoint2D>() != null)
+            {
+                box.GetComponent<FixedJoint2D>().enabled = true;
+                box.GetComponent<BoxPull>().pushed = true;
+                box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
+            }
         }else if (Input.GetKeyUp(KeyCode.E))
         {
-            box.GetComponent<FixedJoint2D>().enabled = false;
-            box.GetComponent<BoxPull>().pushed = false;
+            if (box.GetComponent<FixedJoint2D>() != null)
+            {
+                box.GetComponent<FixedJoint2D>().enabled = false;
+                box.GetComponent<BoxPull>().pushed = false;
+            }
             //box.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x, 1) * throwFroce;
 
         }
