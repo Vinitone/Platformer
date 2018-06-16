@@ -19,7 +19,7 @@ public class PlatformerCharacter2D : MonoBehaviour
     public Stat energy;
 
     [SerializeField]
-    public Stat stamina;
+    public Stat ammo;
 
     [SerializeField ]private Transform playerCollider;    // A position marking where to check if the player is grounded.
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -41,7 +41,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 
         health.Initialize();
         energy.Initialize();
-        stamina.Initialize();
+        ammo.Initialize();
     }
 
 
@@ -50,7 +50,6 @@ public class PlatformerCharacter2D : MonoBehaviour
         m_Grounded = false;
         DeathCheck();
         energy.Regen(1, 1);
-        stamina.Regen(10, 5);
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Physics2D.queriesStartInColliders = false;
