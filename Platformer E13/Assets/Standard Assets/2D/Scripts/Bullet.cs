@@ -51,6 +51,12 @@ public class Bullet : MonoBehaviour {
                     instance.GetComponent<Boss>().health.Reduce(damage);
                 Destroy(this.gameObject);
             }
+            else if (collision != null && collision.gameObject.GetComponent<Attract>() != null)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().mass += 5;
+                collision.transform.localScale *= 1.1f;
+                Destroy(this.gameObject);
+            }
             else if (collision != null && collision.gameObject.tag != "Player")
             {
                 Destroy(this.gameObject);

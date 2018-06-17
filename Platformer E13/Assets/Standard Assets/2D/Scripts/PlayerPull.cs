@@ -25,9 +25,13 @@ public class PlayerPull : MonoBehaviour {
 
         Physics2D.queriesStartInColliders = false;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, distance, InteractibleMask);
-        if(hit.collider != null && hit.collider.gameObject.tag == "Interactible"&& Input.GetKey(KeyCode.E) && !floatObject.floating)
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector2.down * transform.localScale.y, distance, InteractibleMask);
+        if (hit.collider != null && hit.collider.gameObject.tag == "Interactible" && Input.GetKey(KeyCode.E) && !floatObject.floating || hit2.collider != null && hit2.collider.gameObject.tag == "Interactible" && Input.GetKey(KeyCode.E) && !floatObject.floating)
         {
-            box = hit.collider.gameObject;
+            if(hit.collider != null)
+                box = hit.collider.gameObject;
+            else if (hit2.collider != null)
+                box = hit2.collider.gameObject;
             if (box.GetComponent<FixedJoint2D>() != null)
             {
                 box.GetComponent<FixedJoint2D>().enabled = true;
@@ -44,13 +48,16 @@ public class PlayerPull : MonoBehaviour {
             //box.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x, 1) * throwFroce;
 
         }
-        if (hit.collider != null && hit.collider.gameObject.tag == "Interactible" && Input.GetKeyDown(KeyCode.Q) && player.energy.CurrentVal > energyFloatDrain)
+        if (hit.collider != null && hit.collider.gameObject.tag == "Interactible" && Input.GetKeyDown(KeyCode.Q) && player.energy.CurrentVal > energyFloatDrain || hit2.collider != null && hit2.collider.gameObject.tag == "Interactible" && Input.GetKeyDown(KeyCode.Q) && player.energy.CurrentVal > energyFloatDrain)
         {
-            floatable = hit.collider.gameObject;
+            if (hit.collider != null)
+                floatable = hit.collider.gameObject;
+            else if (hit2.collider != null)
+                floatable = hit2.collider.gameObject;
             startTime = Time.fixedTime;
             floatable.GetComponent<FloatObject>().floatTime = 0;
         }
-        if (hit.collider != null && hit.collider.gameObject.tag == "Interactible" && Input.GetKey(KeyCode.Q) && player.energy.CurrentVal > energyFloatDrain)
+        if (hit.collider != null && hit.collider.gameObject.tag == "Interactible" && Input.GetKey(KeyCode.Q) && player.energy.CurrentVal > energyFloatDrain || hit2.collider != null && hit2.collider.gameObject.tag == "Interactible" && Input.GetKey(KeyCode.Q) && player.energy.CurrentVal > energyFloatDrain)
         {
             if (timeStamp <= Time.time)
             {
