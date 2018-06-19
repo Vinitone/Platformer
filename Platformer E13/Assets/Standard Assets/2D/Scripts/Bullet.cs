@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
-    public float damage;
+    public Vector2 vel;
+    public float damage, vel2;
     private GameObject player;
     public bool PlayerBullet;
 	// Use this for initialization
@@ -14,8 +15,10 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+       vel = GetComponent<Rigidbody2D>().velocity;
+       vel2 = GetComponent<Rigidbody2D>().velocity.magnitude;
+
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

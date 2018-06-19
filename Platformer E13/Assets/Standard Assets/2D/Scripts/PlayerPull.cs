@@ -44,6 +44,7 @@ public class PlayerPull : MonoBehaviour {
             {
                 box.GetComponent<FixedJoint2D>().enabled = false;
                 box.GetComponent<BoxPull>().pushed = false;
+                box.GetComponent<FloatObject>().posOffset = box.transform.position;
             }
             //box.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x, 1) * throwFroce;
 

@@ -11,7 +11,7 @@ public class FloatObject : MonoBehaviour {
 
     private float timeStamp;
     public LayerMask floatMask;
-    Vector3 posOffset = new Vector3();
+    public Vector3 posOffset = new Vector3();
     Vector3 tempPos = new Vector3();
     // Use this for initialization
     void Start () {

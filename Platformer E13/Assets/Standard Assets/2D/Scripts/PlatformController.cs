@@ -81,15 +81,15 @@ public class PlatformController : RaycastController {
 	}
 
 	void MovePassengers(bool beforeMovePlatform) {
-		foreach (PassengerMovement passenger in passengerMovement) {
-			if (!passengerDictionary.ContainsKey(passenger.transform)) {
-				passengerDictionary.Add(passenger.transform,passenger.transform.GetComponent<Controller2D>());
-			}
+		//foreach (PassengerMovement passenger in passengerMovement) {
+		//	if (!passengerDictionary.ContainsKey(passenger.transform)) {
+		//		passengerDictionary.Add(passenger.transform,passenger.transform.GetComponent<Controller2D>());
+		//	}
 
-			if (passenger.moveBeforePlatform == beforeMovePlatform) {
-				passengerDictionary[passenger.transform].Move(passenger.velocity, passenger.standingOnPlatform);
-			}
-		}
+		//	if (passenger.moveBeforePlatform == beforeMovePlatform) {
+		//		passengerDictionary[passenger.transform].Move(passenger.velocity, passenger.standingOnPlatform);
+		//	}
+		//}
 	}
 
 	void CalculatePassengerMovement(Vector3 velocity) {
