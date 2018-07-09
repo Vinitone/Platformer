@@ -31,13 +31,17 @@ public class PlayerShoot : MonoBehaviour {
 
     private void LateUpdate()
     {
-        GetDirection();
+        if(!player.space)
+            GetDirection();
     }
     private void Shoot()
     {
         var instance = Instantiate(bullet, gun.transform.position, rotation);
-        instance.GetComponent<Rigidbody2D>().velocity = mouseDir * bulletSpeed;
-        if(player.ammo.CurrentVal > 0)
+        if(mouseDir != Vector3.zero)
+            instance.GetComponent<Rigidbody2D>().velocity = mouseDir * bulletSpeed;
+        else
+            instance.GetComponent<Rigidbody2D>().velocity = Vector3.right * bulletSpeed;
+        if (player.ammo.CurrentVal > 0 && !player.space)
             player.ammo.Reduce(1);
     }
 

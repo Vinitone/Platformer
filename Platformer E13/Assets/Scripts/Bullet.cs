@@ -27,6 +27,7 @@ public class Bullet : MonoBehaviour {
             if (collision.gameObject.tag == "Player")
             {
                 player.GetComponent<PlatformerCharacter2D>().health.Reduce(damage);
+                CombatTextManager.Instance.CreateText(collision.gameObject.transform.position, new Vector3(0, 1, 0), 2, 0, 2, "-" + damage.ToString(), Color.red, CombatText.TextType.FeedbackText);
                 Destroy(this.gameObject);
             }
             if(collision.gameObject.tag == "Enemy")
@@ -52,6 +53,8 @@ public class Bullet : MonoBehaviour {
                     instance.GetComponent<Shooter>().health.Reduce(damage);
                 if (instance.GetComponent<Boss>() != null)
                     instance.GetComponent<Boss>().health.Reduce(damage);
+                if (instance.GetComponentInParent<Boss>() != null)
+                    instance.GetComponentInParent<Boss>().health.Reduce(damage);
                 Destroy(this.gameObject);
             }
             else if (collision != null && collision.gameObject.GetComponent<Attract>() != null)

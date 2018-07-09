@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour {
     public float Damage { get; private set; }
     private bool facingRight = true;
     private float cooldown;
+    private float damage = 20;
   
     public void ApplyDamage(int damageAmount)
     {
@@ -60,13 +61,13 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlatformerCharacter2D>().health.Reduce(damage);
+            CombatTextManager.Instance.CreateText(collision.gameObject.transform.position, new Vector3(0, 1, 0), 2, 0, 2, "-" + damage.ToString(), Color.red, CombatText.TextType.FeedbackText);
+        }
+
+    }
 }

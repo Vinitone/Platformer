@@ -23,7 +23,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 
     [SerializeField ]private Transform playerCollider;    // A position marking where to check if the player is grounded.
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-    public bool m_Grounded;            // Whether or not the player is grounded.
+    public bool m_Grounded, space = false;            // Whether or not the player is grounded.
     private Transform m_CeilingCheck, m_GroundCheck;   // A position marking where to check for ceilings
     const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
     private Animator m_Anim;            // Reference to the player's animator component.
@@ -61,7 +61,7 @@ public class PlatformerCharacter2D : MonoBehaviour
     }
 
 
-    public void Move(float move, bool crouch, bool roll, bool jump, bool run)
+    public void Move(float move, float vmove, bool crouch, bool roll, bool jump, bool run)
     {
         // If crouching, check to see if the character can stand up
         if (!crouch)
@@ -77,13 +77,23 @@ public class PlatformerCharacter2D : MonoBehaviour
         if (m_Grounded || m_AirControl)
         {
             m_Anim.SetFloat("Speed", Mathf.Abs(move));
+            m_Anim.SetFloat("vSpeed", Mathf.Abs(vmove));
             m_Anim.SetBool("Run", run);
             // Move the character
-            if (run && m_Grounded)
-                m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed * 1.5f, m_Rigidbody2D.velocity.y);
+            if (space)
+            {
+                if (run && m_Grounded)
+                    m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed * 1.5f, vmove * m_MaxSpeed);
+                else
+                    m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, vmove * m_MaxSpeed);
+            }
             else
-                m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
-
+            {
+                if (run && m_Grounded)
+                    m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed * 1.5f, m_Rigidbody2D.velocity.y);
+                else
+                    m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
+            }
             //If the input is moving the player right and the player is facing left...
             if (move > 0 && !m_FacingRight)
             {
@@ -120,10 +130,10 @@ public class PlatformerCharacter2D : MonoBehaviour
 
     private void DeathCheck()
     {
-        if (transform.position.y <= deathPoint.transform.position.y || health.CurrentVal <= 0)
-        {
-            ManagerForScenes.Instance.GameOver();
-        }
+            if (deathPoint != null && transform.position.y <= deathPoint.transform.position.y || health.CurrentVal <= 0)
+            {
+                ManagerForScenes.Instance.ResetLevel();
+            }
     }
 }
 
