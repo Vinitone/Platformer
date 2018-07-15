@@ -21,7 +21,6 @@ public class PlayerGrab : MonoBehaviour {
                 GetComponent<HingeJoint2D>().enabled = true;
                 GetComponent<HingeJoint2D>().connectedBody = chain.GetComponent<Rigidbody2D>();
             }
-          
         }
         else if (Input.GetKeyUp(KeyCode.E))
         {

@@ -54,11 +54,11 @@ GameObject:
   - component: {fileID: 114696687896642268}
   - component: {fileID: 95463764367222808}
   - component: {fileID: 114082986211112484}
-  - component: {fileID: 114398166022102522}
   - component: {fileID: 70911829497896466}
   - component: {fileID: 212708307492407766}
   - component: {fileID: 114392786462437622}
   - component: {fileID: 233016186132580136}
+  - component: {fileID: 114030288304653674}
   - component: {fileID: 114047374288879356}
   m_Layer: 8
   m_Name: Player
@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4308230186794686
 Transform:
   m_ObjectHideFlags: 1
@@ -119,7 +119,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1790434262138086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.66, y: -1.07, z: 0}
+  m_LocalPosition: {x: 38.61, y: 4.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4696286169233382}
@@ -312,6 +312,25 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
+--- !u!114 &114030288304653674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790434262138086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d0904ceb319dd542980b0e1c13a412f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyDrainInSec: 1
+  energyFloatDrain: 5
+  distance: 0.5
+  timePressed: 0
+  startTime: 0
+  InteractibleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &114047374288879356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,21 +358,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 0.75
-  throwFroce: 10
-  timePressed: 0
-  startTime: 0
   InteractibleMask:
     serializedVersion: 2
     m_Bits: 4294967039
-  energyDrainInSec: 1
-  energyFloatDrain: 5
 --- !u!114 &114392786462437622
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1790434262138086}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69bc68347a5d010429f2630669b2e6f4, type: 3}
   m_Name: 
@@ -361,22 +375,6 @@ MonoBehaviour:
   gun: {fileID: 1959548721134696}
   bullet: {fileID: 1749945257155078, guid: acd1397009693494dbe4de545c69f38a, type: 2}
   bulletSpeed: 15
---- !u!114 &114398166022102522
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1790434262138086}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb67327c0f018704fa4c73fd02beec8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dashPower: 10
-  energyDrainInSec: 1
-  energyDrainAmount: 10
-  mousePos: {x: 0, y: 0, z: 0}
-  mouseDir: {x: 0, y: 0, z: 0}
 --- !u!114 &114638029218656482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -390,12 +388,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MaxSpeed: 10
   m_JumpForce: 800
-  m_CrouchSpeed: 0.25
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 4294967007
-  dashSpeed: 5
   deathPoint: {fileID: 0}
   health:
     bar: {fileID: 0}
@@ -411,6 +407,7 @@ MonoBehaviour:
     currentVal: 6
   playerCollider: {fileID: 0}
   m_Grounded: 0
+  space: 0
   m_FacingRight: 1
 --- !u!114 &114696687896642268
 MonoBehaviour:

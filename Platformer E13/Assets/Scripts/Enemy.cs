@@ -6,11 +6,10 @@ public class Enemy : MonoBehaviour {
 
 	public string Name { get; private set; }
     public float Health { get; set; }
-    public float Damage { get; private set; }
+    public float Damage = 20;
     private bool facingRight = true;
     private float cooldown;
-    private float damage = 20;
-  
+
     public void ApplyDamage(int damageAmount)
     {
         Health -= damageAmount;
@@ -36,10 +35,9 @@ public class Enemy : MonoBehaviour {
     public void Move(Transform trnsfrm, float speed)
     {
         if(facingRight)
-        trnsfrm.Translate(Vector2.right * speed * Time.deltaTime);
+            trnsfrm.Translate(Vector2.right * speed * Time.deltaTime);
         else
             trnsfrm.Translate(Vector2.left * speed * Time.deltaTime);
-
     }
 
     public bool Cooldown(float seconds)
@@ -65,8 +63,8 @@ public class Enemy : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlatformerCharacter2D>().health.Reduce(damage);
-            CombatTextManager.Instance.CreateText(collision.gameObject.transform.position, new Vector3(0, 1, 0), 2, 0, 2, "-" + damage.ToString(), Color.red, CombatText.TextType.FeedbackText);
+            collision.gameObject.GetComponent<PlatformerCharacter2D>().health.Reduce(Damage);
+            CombatTextManager.Instance.CreateText(collision.gameObject.transform.position, new Vector3(0, 1, 0), 2, 0, 2, "-" + Damage.ToString(), Color.red, CombatText.TextType.FeedbackText);
         }
 
     }

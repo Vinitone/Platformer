@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GunPickup : MonoBehaviour {
 
-    
     public GameObject player;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -15,6 +14,5 @@ public class GunPickup : MonoBehaviour {
             player.GetComponent<PlayerShoot>().gun.SetActive(true);
             Destroy(gameObject);
         }
-            
     }
 }

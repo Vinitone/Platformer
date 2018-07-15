@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Shooter : Enemy {
 
-    public float damage = 20;
     public Stat health;
     public float bulletSpeed;
     public GameObject bullet, player;

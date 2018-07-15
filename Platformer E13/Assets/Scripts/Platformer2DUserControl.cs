@@ -8,12 +8,10 @@ public class Platformer2DUserControl : MonoBehaviour
     private PlatformerCharacter2D m_Character;
     private bool m_Jump;
 
-
     private void Awake()
     {
         m_Character = GetComponent<PlatformerCharacter2D>();
     }
-
 
     private void Update()
     {
@@ -22,9 +20,7 @@ public class Platformer2DUserControl : MonoBehaviour
             // Read the jump input in Update so button presses aren't missed.
             m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
         }
-            
     }
-
 
     private void FixedUpdate()
     {
