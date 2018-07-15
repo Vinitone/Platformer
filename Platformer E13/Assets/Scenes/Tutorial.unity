@@ -825,11 +825,11 @@ Prefab:
       objectReference: {fileID: 942272061}
     - target: {fileID: 4079864512318846, guid: b5e60c36848e1f347906e5eb1f16533f, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.49486238
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4079864512318846, guid: b5e60c36848e1f347906e5eb1f16533f, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.435753
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b5e60c36848e1f347906e5eb1f16533f, type: 2}
@@ -3757,6 +3757,11 @@ Prefab:
       propertyPath: dialogue.sentences.Array.data[3]
       value: Use [A] and [D] to walk and [SPACE] to jump.
       objectReference: {fileID: 0}
+    - target: {fileID: 114932124021813294, guid: 897072fd1308ac8448621d7737eca956,
+        type: 2}
+      propertyPath: displayOnce
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 897072fd1308ac8448621d7737eca956, type: 2}
   m_IsPrefabParent: 0
@@ -3937,11 +3942,11 @@ Prefab:
       objectReference: {fileID: 942272061}
     - target: {fileID: 4079864512318846, guid: b5e60c36848e1f347906e5eb1f16533f, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.49486238
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4079864512318846, guid: b5e60c36848e1f347906e5eb1f16533f, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.435753
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b5e60c36848e1f347906e5eb1f16533f, type: 2}

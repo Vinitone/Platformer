@@ -7,7 +7,7 @@ public class FloatObject : MonoBehaviour {
 
     private GameObject floatObject, text;
     public bool floating;
-    public float amplitude, frequency, height, timePressed, floatTime = 0, speed, releaseTime;
+    public float height, timePressed, floatTime = 0, speed, releaseTime;
 
     private float timeStamp;
     public LayerMask floatMask;
@@ -39,21 +39,13 @@ public class FloatObject : MonoBehaviour {
                 floatTime -= 1;
             }
         }
-        if (transform.position == tempPos && floating) 
-        {
-            tempPos = transform.position;
-            tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * amplitude;
-
-            transform.position = tempPos;
-            
-        }
         if(Time.fixedTime > releaseTime + (int)timePressed && floating || floatTime < 0)
         {
             floatTime = 0;
             floating = false;
 
         }
-        if(!floating)
+        if (!floating)
         {
             tempPos = transform.position;
             tempPos.y -= height;
@@ -61,8 +53,5 @@ public class FloatObject : MonoBehaviour {
             float journey = distCovered / (tempPos.y - posOffset.y);
             transform.position = Vector3.Lerp(this.transform.position, tempPos, journey);
         }
-
-        
-
     }
 }

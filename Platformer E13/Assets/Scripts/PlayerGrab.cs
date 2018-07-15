@@ -7,10 +7,6 @@ public class PlayerGrab : MonoBehaviour {
     GameObject chain;
     public LayerMask InteractibleMask;
     public float distance;
-    // Use this for initialization
-    void Start () {
-		
-	}
 
     // Update is called once per frame
     void Update()

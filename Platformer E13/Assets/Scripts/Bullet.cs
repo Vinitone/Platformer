@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
-    public Vector2 vel;
-    public float damage, vel2;
+    public float damage;
     private GameObject player;
     public bool PlayerBullet;
 	// Use this for initialization
@@ -13,13 +12,6 @@ public class Bullet : MonoBehaviour {
         player = GameObject.FindWithTag("Player");
 	}
 	
-	// Update is called once per frame
-	void Update () {
-       vel = GetComponent<Rigidbody2D>().velocity;
-       vel2 = GetComponent<Rigidbody2D>().velocity.magnitude;
-
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!PlayerBullet)
@@ -29,11 +21,6 @@ public class Bullet : MonoBehaviour {
                 player.GetComponent<PlatformerCharacter2D>().health.Reduce(damage);
                 CombatTextManager.Instance.CreateText(collision.gameObject.transform.position, new Vector3(0, 1, 0), 2, 0, 2, "-" + damage.ToString(), Color.red, CombatText.TextType.FeedbackText);
                 Destroy(this.gameObject);
-            }
-            if(collision.gameObject.tag == "Enemy")
-            {
-                //Physics2D.IgnoreCollision();
-               
             }
             else if (collision != null && collision.gameObject.tag != "Enemy")
             {

@@ -20,97 +20,76 @@ public class Boss : Enemy {
         child = transform.GetChild(0);
         health.Initialize();
         baseScale = child.localScale;
-        anim = GetComponentInParent<Animator>();
-        
+        anim = GetComponent<Animator>();
+        StartCoroutine(Teleport(8));
+        StartCoroutine(AttackPattern(6));
     }
 
     // Update is called once per frame
     void Update()
     {
         health.Regen(1, 5);
-        GetDirection();
         if (health.CurrentVal <= 0)
             lvlChanger.SetTrigger("Fade Out");
         Death(this.gameObject, health.CurrentVal);
         ScaleDown();
+        States();  
+    }
 
+    private void States()
+    {
         if (health.CurrentVal > 750)
-            States(1);
+            child.GetComponent<SpriteRenderer>().material.color = Color.green;
         else if (health.CurrentVal > 500)
-            States(2);
+            child.GetComponent<SpriteRenderer>().material.color = Color.yellow;
         else if (health.CurrentVal > 250)
-            States(3);
+            child.GetComponent<SpriteRenderer>().material.color = color;
         else if (health.CurrentVal > 0)
-            States(4);
-
+            child.GetComponent<SpriteRenderer>().material.color = Color.red;
     }
 
-    private void States(int hp)
+    private IEnumerator AttackPattern( float delayTime)
     {
-        switch (hp)
+        while (true)
         {
-            case 1:
-                if (Cooldown(1))
-                {
-                    
-                }
-                child.GetComponent<SpriteRenderer>().material.color = Color.green;
-                if (Cooldown(15))
-                    Teleport(Random.Range(0, 3));
-                break;
-            case 2:
-                child.GetComponent<SpriteRenderer>().material.color = Color.yellow;
-                if (Cooldown(10))
-                    Teleport(Random.Range(0, 3));
-                break;
-            case 3:
-                if (!anim.GetBool("GunInit"))
-                {
-                    anim.SetBool("GunInit", true);
-                    anim.SetTrigger("Gun");
-                }
-                child.GetComponent<SpriteRenderer>().material.color = color;
-                if (Cooldown(7.5f))
-                    Teleport(Random.Range(0, 3));
-                break;
-            case 4:
-                child.GetComponent<SpriteRenderer>().material.color = Color.red;
-                if (Cooldown(5))
-                    Teleport(Random.Range(0, 3));
-                break;
+            yield return new WaitForSeconds(delayTime);
+            int animation = Random.Range(0, 5);
+            switch (animation)
+            {
+                case 0:
+                    anim.SetTrigger("JumpAttack");
+                    break;
+                case 1:
+                    anim.SetTrigger("Bash");
+                    break;
+                case 2:
+                    anim.SetTrigger("Cone");
+                    break;
+                case 3:
+                    anim.SetTrigger("Laser");
+                    break;
+            }
         }
     }
 
-    private void AttackPattern(int animation)
+    private IEnumerator Teleport(float delayTime)
     {
-        switch (animation)
+        while (true)
         {
-            case 0:
-                anim.SetTrigger("JumpAttack");
-                break;
-            case 1:
-                anim.SetTrigger("Bash");
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-        }
-    }
-
-    private void Teleport(int position)
-    {
-        switch (position)
-        {
-            case 0:
-                this.transform.position = teleportPos[0].position;
-                break;
-            case 1:
-                this.transform.position = teleportPos[1].position;
-                break;
-            case 2:
-                this.transform.position = teleportPos[2].position;
-                break;
+            yield return new WaitForSeconds(delayTime);
+            int position = Random.Range(0, 3);
+            switch (position)
+            {
+                case 0:
+                    this.transform.position = teleportPos[0].position;
+                    break;
+                case 1:
+                    this.transform.position = teleportPos[1].position;
+                    break;
+                case 2:
+                    this.transform.position = teleportPos[2].position;
+                    break;
+            }
         }
     }
 
@@ -131,21 +110,5 @@ public class Boss : Enemy {
     {
         var instance = Instantiate(bullet, gun.transform.position, gun.transform.rotation);
         instance.GetComponent<Rigidbody2D>().velocity = Vector3.left * bulletSpeed;
-        Debug.Log("Boss Shot!");
-    }
-
-    private void GetDirection()
-    {
-        var playerPos = player.transform.position;
-
-        shootDir = playerPos - child.position;
-        shootDir.z = 0.0f;
-        shootDir = shootDir.normalized;
-    }
-
-    private void GunInit()
-    {
-        Debug.Log("PEW");
-        gun.SetActive(false);
     }
 }

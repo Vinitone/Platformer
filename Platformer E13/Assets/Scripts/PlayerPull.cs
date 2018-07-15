@@ -46,8 +46,6 @@ public class PlayerPull : MonoBehaviour {
                 box.GetComponent<BoxPull>().pushed = false;
                 box.GetComponent<FloatObject>().posOffset = box.transform.position;
             }
-            //box.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x, 1) * throwFroce;
-
         }
         if (hit.collider != null && hit.collider.gameObject.tag == "Interactible" && Input.GetKeyDown(KeyCode.Q) && player.energy.CurrentVal > energyFloatDrain || hit2.collider != null && hit2.collider.gameObject.tag == "Interactible" && Input.GetKeyDown(KeyCode.Q) && player.energy.CurrentVal > energyFloatDrain)
         {

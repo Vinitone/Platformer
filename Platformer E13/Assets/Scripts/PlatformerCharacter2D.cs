@@ -24,18 +24,14 @@ public class PlatformerCharacter2D : MonoBehaviour
     [SerializeField ]private Transform playerCollider;    // A position marking where to check if the player is grounded.
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded, space = false;            // Whether or not the player is grounded.
-    private Transform m_CeilingCheck, m_GroundCheck;   // A position marking where to check for ceilings
     const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
     private Animator m_Anim;            // Reference to the player's animator component.
     private Rigidbody2D m_Rigidbody2D;
     public bool m_FacingRight = true;  // For determining which way the player is currently facing.    
-    private float t;
 
     private void Awake()
     {
         // Setting up references.
-        m_GroundCheck = transform.Find("GroundCheck");
-        m_CeilingCheck = transform.Find("CeilingCheck");
         m_Anim = GetComponent<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
@@ -63,16 +59,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 
     public void Move(float move, float vmove, bool crouch, bool roll, bool jump, bool run)
     {
-        // If crouching, check to see if the character can stand up
-        if (!crouch)
-        {
-            // If the character has a ceiling preventing them from standing up, keep them crouching
-            if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
-            {
-                crouch = true;
-            }
-        }
-
         //only control the player if grounded or airControl is turned on
         if (m_Grounded || m_AirControl)
         {
