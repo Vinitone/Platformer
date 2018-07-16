@@ -27,10 +27,6 @@ public class BarScript : MonoBehaviour {
             fillAmount = Map(value, MaxValue);
         }
     }
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {

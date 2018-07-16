@@ -1037,6 +1037,16 @@ Prefab:
       propertyPath: ammo.bar
       value: 
       objectReference: {fileID: 572064275}
+    - target: {fileID: 212700428841261252, guid: bc05464f66031b048983dfbe527ddc27,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114392786462437622, guid: bc05464f66031b048983dfbe527ddc27,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc05464f66031b048983dfbe527ddc27, type: 2}
   m_IsPrefabParent: 0
@@ -2966,6 +2976,7 @@ Transform:
   - {fileID: 1507422118}
   - {fileID: 1097429204}
   - {fileID: 683811281}
+  - {fileID: 1328423356}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3033,6 +3044,102 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cf5629cc321822f479efcded299622c9, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1328423355
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1221276728}
+    m_Modifications:
+    - target: {fileID: 114932124021813294, guid: 897072fd1308ac8448621d7737eca956,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702512512216022, guid: 897072fd1308ac8448621d7737eca956, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 86.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702512512216022, guid: 897072fd1308ac8448621d7737eca956, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702512512216022, guid: 897072fd1308ac8448621d7737eca956, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702512512216022, guid: 897072fd1308ac8448621d7737eca956, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702512512216022, guid: 897072fd1308ac8448621d7737eca956, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702512512216022, guid: 897072fd1308ac8448621d7737eca956, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702512512216022, guid: 897072fd1308ac8448621d7737eca956, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702512512216022, guid: 897072fd1308ac8448621d7737eca956, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 61608058062282382, guid: 897072fd1308ac8448621d7737eca956,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: -0.5369921
+      objectReference: {fileID: 0}
+    - target: {fileID: 61608058062282382, guid: 897072fd1308ac8448621d7737eca956,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 2.0739841
+      objectReference: {fileID: 0}
+    - target: {fileID: 61608058062282382, guid: 897072fd1308ac8448621d7737eca956,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0.24175644
+      objectReference: {fileID: 0}
+    - target: {fileID: 61608058062282382, guid: 897072fd1308ac8448621d7737eca956,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1.7228622
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382246506891134, guid: 897072fd1308ac8448621d7737eca956, type: 2}
+      propertyPath: m_Name
+      value: Dialogue (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114932124021813294, guid: 897072fd1308ac8448621d7737eca956,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: If i could hit them with my blaster,
+      objectReference: {fileID: 0}
+    - target: {fileID: 114932124021813294, guid: 897072fd1308ac8448621d7737eca956,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[2]
+      value: maybe their power would increase.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114932124021813294, guid: 897072fd1308ac8448621d7737eca956,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[0]
+      value: Now that i found a ship part I should return to the ship
+      objectReference: {fileID: 0}
+    - target: {fileID: 114932124021813294, guid: 897072fd1308ac8448621d7737eca956,
+        type: 2}
+      propertyPath: dialogue.sentences.Array.data[3]
+      value: Let's try.
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 897072fd1308ac8448621d7737eca956, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1328423356 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4702512512216022, guid: 897072fd1308ac8448621d7737eca956,
+    type: 2}
+  m_PrefabInternal: {fileID: 1328423355}
 --- !u!1 &1342623389
 GameObject:
   m_ObjectHideFlags: 0
@@ -3931,22 +4038,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 1213433414678454, guid: b5e60c36848e1f347906e5eb1f16533f, type: 2}
-      propertyPath: m_Name
-      value: GravitySphere (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 114225695790642726, guid: b5e60c36848e1f347906e5eb1f16533f,
         type: 2}
       propertyPath: player
       value: 
       objectReference: {fileID: 942272061}
-    - target: {fileID: 4079864512318846, guid: b5e60c36848e1f347906e5eb1f16533f, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4079864512318846, guid: b5e60c36848e1f347906e5eb1f16533f, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.5
+    - target: {fileID: 1213433414678454, guid: b5e60c36848e1f347906e5eb1f16533f, type: 2}
+      propertyPath: m_Name
+      value: GravitySphere (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b5e60c36848e1f347906e5eb1f16533f, type: 2}
