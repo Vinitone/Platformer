@@ -26,6 +26,7 @@ public class PlatformerCharacter2D : MonoBehaviour
     private Animator m_Anim;            // Reference to the player's animator component.
     private Rigidbody2D m_Rigidbody2D;
     public bool m_FacingRight = true;  // For determining which way the player is currently facing.    
+    public AudioClip jumpSound;
 
     private void Awake()
     {
@@ -73,6 +74,7 @@ public class PlatformerCharacter2D : MonoBehaviour
             }
             else
             {
+                
                 if (run && m_Grounded)
                     m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed * 1.5f, m_Rigidbody2D.velocity.y);
                 else
@@ -98,6 +100,7 @@ public class PlatformerCharacter2D : MonoBehaviour
             m_Grounded = false;
             m_Anim.SetBool("Ground", false);
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            SoundManager.instance.PlaySingle(jumpSound);
         }
     }
 

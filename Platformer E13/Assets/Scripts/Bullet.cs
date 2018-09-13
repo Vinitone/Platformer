@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour {
     public float damage;
     private GameObject player;
     public bool PlayerBullet;
+    public AudioClip hit;
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindWithTag("Player");
@@ -14,6 +15,7 @@ public class Bullet : MonoBehaviour {
 	
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        SoundManager.instance.PlaySingle(hit);
         if (!PlayerBullet)
         {
             if (collision.gameObject.tag == "Player")
