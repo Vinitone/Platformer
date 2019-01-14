@@ -9,11 +9,20 @@ public class Lock : MonoBehaviour {
     public Sprite sprite;
     public bool endDoor;
     public Animator anim;
+    public AnimationClip clip;
+    public int levelToLoad;
+    AnimationEvent evt = new AnimationEvent();
+
+    public void Start()
+    {
+        evt.time = 1;
+        evt.functionName = "LoadLevel";   
+    }
     void Update () {
 
         foreach (Key key in keys)
         {
-            if (key.GetComponent<Key>().Open)
+            if (key != null && key.GetComponent<Key>().Open)
             {
                 if (endDoor)
                     GetComponent<SpriteRenderer>().sprite = sprite;
@@ -23,10 +32,14 @@ public class Lock : MonoBehaviour {
         }      
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (endDoor && keys.All(x => x.Open == true) && collision.tag == "Player")
+
+        if (endDoor && (keys.All(x => x.Open == true) || keys.Length == 0) && collision.tag == "Player" && Input.GetKeyDown(KeyCode.W))
+        {
+            evt.intParameter = levelToLoad;
+            clip.AddEvent(evt);
             anim.SetTrigger("Fade Out");
-        
+        }
     }
 }

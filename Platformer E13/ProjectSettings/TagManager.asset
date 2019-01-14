@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Pushable
   - Interactible
+  - Reflect
   layers:
   - Default
   - TransparentFX

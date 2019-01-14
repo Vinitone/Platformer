@@ -7,7 +7,7 @@ public class PlayerShoot : MonoBehaviour {
 
     PlatformerCharacter2D player;
     public GameObject gun, bullet;
-    public float bulletSpeed;
+    public float bulletSpeed, shootRate = .3f;
     public AudioClip shoot;
     private Vector3 mouseDir;
     private Quaternion rotation;
@@ -24,7 +24,7 @@ public class PlayerShoot : MonoBehaviour {
         
         if (Input.GetMouseButtonDown(0) && player.ammo.CurrentVal > 0)
         {
-            if(Cooldown(.3f))
+            if(Cooldown(shootRate))
                 Shoot();
         }
         anim.SetBool("Reload", Input.GetKeyDown(KeyCode.R));
@@ -37,7 +37,7 @@ public class PlayerShoot : MonoBehaviour {
     }
     private void Shoot()
     {
-        SoundManager.instance.PlaySingle(shoot);
+        //SoundManager.instance.PlaySingle(shoot);
         var instance = Instantiate(bullet, gun.transform.position, rotation);
         if(mouseDir != Vector3.zero)
             instance.GetComponent<Rigidbody2D>().velocity = mouseDir * bulletSpeed;

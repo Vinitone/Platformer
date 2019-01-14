@@ -11,7 +11,7 @@ public class Boss : Enemy {
     public float maxSize, minSize, scaleSpeed, bulletSpeed;
     private float currScale;
     public Color color;
-    private Animator anim;
+    private Animator animator;
     public Animator lvlChanger;
     private Transform child;
 
@@ -48,26 +48,51 @@ public class Boss : Enemy {
             child.GetComponent<SpriteRenderer>().material.color = Color.red;
     }
 
+    private bool PlayerInRange()
+    {
+        Vector3 playerPos = player.transform.position;
+        Vector3 bossPos = this.transform.position;
+
+        Vector3 range = playerPos - bossPos;
+
+        float inRange = range.magnitude;
+
+        if (inRange > 5)
+            return true;
+        else
+            return false;
+    }
+
     private IEnumerator AttackPattern( float delayTime)
     {
         while (true)
         {
             yield return new WaitForSeconds(delayTime);
-            int animation = Random.Range(0, 5);
-            switch (animation)
+            int animation = Random.Range(0, 3);
+            if (PlayerInRange())
             {
-                case 0:
-                    anim.SetTrigger("JumpAttack");
-                    break;
-                case 1:
-                    anim.SetTrigger("Bash");
-                    break;
-                case 2:
-                    anim.SetTrigger("Cone");
-                    break;
-                case 3:
-                    anim.SetTrigger("Laser");
-                    break;
+                switch (animation)
+                {
+                    case 0:
+                        anim.SetTrigger("JumpAttack");
+                        break;
+                    case 1:
+                        anim.SetTrigger("Bash");
+                        break;
+
+                }
+            }
+            else
+            {
+                switch (animation)
+                {
+                    case 0:
+                        anim.SetTrigger("Cone");
+                        break;
+                    case 1:
+                        anim.SetTrigger("Laser");
+                        break;
+                }
             }
         }
     }

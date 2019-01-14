@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour {
 	
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        SoundManager.instance.PlaySingle(hit);
+        //SoundManager.instance.PlaySingle(hit);
         if (!PlayerBullet)
         {
             if (collision.gameObject.tag == "Player")

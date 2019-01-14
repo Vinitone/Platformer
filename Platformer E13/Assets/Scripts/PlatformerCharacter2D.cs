@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.PostProcessing;
 
 public class PlatformerCharacter2D : MonoBehaviour
 {
@@ -9,7 +9,10 @@ public class PlatformerCharacter2D : MonoBehaviour
     [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
     [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
-    public GameObject deathPoint;
+    public GameObject deathPoint, corpse, camera2D;
+    public PostProcessingProfile profile;
+    public Sprite spirit;
+
     [SerializeField]
     public Stat health;
 
@@ -19,12 +22,16 @@ public class PlatformerCharacter2D : MonoBehaviour
     [SerializeField]
     public Stat ammo;
 
+    [SerializeField]
+    public Stat momentum;
+
     [SerializeField ]private Transform playerCollider;    // A position marking where to check if the player is grounded.
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded, space = false;            // Whether or not the player is grounded.
     const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
     private Animator m_Anim;            // Reference to the player's animator component.
     private Rigidbody2D m_Rigidbody2D;
+    private bool died = false;
     public bool m_FacingRight = true;  // For determining which way the player is currently facing.    
     public AudioClip jumpSound;
 
@@ -100,7 +107,7 @@ public class PlatformerCharacter2D : MonoBehaviour
             m_Grounded = false;
             m_Anim.SetBool("Ground", false);
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-            SoundManager.instance.PlaySingle(jumpSound);
+            //SoundManager.instance.PlaySingle(jumpSound);
         }
     }
 
@@ -117,10 +124,14 @@ public class PlatformerCharacter2D : MonoBehaviour
 
     private void DeathCheck()
     {
-            if (deathPoint != null && transform.position.y <= deathPoint.transform.position.y || health.CurrentVal <= 0)
-            {
-                ManagerForScenes.Instance.ResetLevel();
-            }
+        if ((deathPoint != null && transform.position.y <= deathPoint.transform.position.y || health.CurrentVal <= 0) && !died)
+        {
+            //var body = Instantiate(corpse, transform.position, Quaternion.identity);
+            //GetComponent<SpriteRenderer>().sprite = spirit;
+            //camera2D.GetComponent<PostProcessingBehaviour>().profile = profile;
+            //died = true;
+            ManagerForScenes.Instance.ResetLevel();
+        }
     }
 }
 

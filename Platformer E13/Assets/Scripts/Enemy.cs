@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour {
 	public string Name { get; private set; }
     public float Health { get; set; }
     public float Damage = 20;
+    public Animator anim;
     private bool facingRight = true;
     private float cooldown;
 
@@ -63,6 +64,7 @@ public class Enemy : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
+            anim.SetTrigger("Hit");
             collision.gameObject.GetComponent<PlatformerCharacter2D>().health.Reduce(Damage);
             CombatTextManager.Instance.CreateText(collision.gameObject.transform.position, new Vector3(0, 1, 0), 2, 0, 2, "-" + Damage.ToString(), Color.red, CombatText.TextType.FeedbackText);
         }

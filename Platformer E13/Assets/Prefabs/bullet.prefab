@@ -89,10 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3aea22fa57c2ac428d60d56f3984212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vel: {x: 0, y: 0}
   damage: 30
-  vel2: 0
   PlayerBullet: 0
+  hit: {fileID: 8300000, guid: e739c3779fff44f449be60de40708284, type: 3}
 --- !u!212 &212618855261927578
 SpriteRenderer:
   m_ObjectHideFlags: 1
