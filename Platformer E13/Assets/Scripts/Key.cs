@@ -6,6 +6,7 @@ public class Key : MonoBehaviour {
 
     public Sprite sprite;
     public bool item;
+    private GearCollect gear;
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class Key : MonoBehaviour {
         else if (collision.tag == "Player" && item)
         {
             Open = true;
+            gear.CollectedGear();
             GetComponent<SpriteRenderer>().sprite = sprite;
         }
     }

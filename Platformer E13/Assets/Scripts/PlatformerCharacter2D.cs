@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.PostProcessing;
 
 public class PlatformerCharacter2D : MonoBehaviour
 {
@@ -10,7 +9,6 @@ public class PlatformerCharacter2D : MonoBehaviour
     [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
     public GameObject deathPoint, corpse, camera2D;
-    public PostProcessingProfile profile;
     public Sprite spirit;
 
     [SerializeField]
@@ -52,16 +50,20 @@ public class PlatformerCharacter2D : MonoBehaviour
         m_Grounded = false;
         DeathCheck();
         energy.Regen(1, 1);
+        GroundCheck();
+    }
+
+    private void GroundCheck()
+    {
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Physics2D.queriesStartInColliders = false;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.2f, m_WhatIsGround);
-        if(hit.collider != null)
+        if (hit.collider != null)
         { m_Grounded = true; }
         m_Anim.SetBool("Ground", m_Grounded);
         m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
     }
-
 
     public void Move(float move, float vmove, bool crouch, bool roll, bool jump, bool run)
     {
@@ -81,7 +83,7 @@ public class PlatformerCharacter2D : MonoBehaviour
             }
             else
             {
-                
+
                 if (run && m_Grounded)
                     m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed * 1.5f, m_Rigidbody2D.velocity.y);
                 else
@@ -100,8 +102,13 @@ public class PlatformerCharacter2D : MonoBehaviour
                 Flip();
             }
         }
+        Jump(jump);
+    }
+
+    private void Jump(bool jump)
+    {
         // If the player should jump...
-        if (m_Grounded && jump )
+        if (m_Grounded && jump)
         {
             // Add a vertical force to the player.
             m_Grounded = false;

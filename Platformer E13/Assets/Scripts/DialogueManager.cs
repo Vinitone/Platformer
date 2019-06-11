@@ -20,7 +20,7 @@ public class DialogueManager : MonoBehaviour {
 	public void StartDialogue (Dialogue dialogue)
 	{
 		animator.SetBool("IsOpen", true);
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
 		nameText.text = dialogue.name;
 
 		sentences.Clear();

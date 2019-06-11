@@ -6,7 +6,7 @@ using System.Linq;
 public class PlayerShoot : MonoBehaviour {
 
     PlatformerCharacter2D player;
-    public GameObject gun, bullet;
+    public GameObject gun;
     public float bulletSpeed, shootRate = .3f;
     public AudioClip shoot;
     private Vector3 mouseDir;
@@ -35,10 +35,11 @@ public class PlayerShoot : MonoBehaviour {
         if(!player.space)
             GetDirection();
     }
+
     private void Shoot()
     {
         //SoundManager.instance.PlaySingle(shoot);
-        var instance = Instantiate(bullet, gun.transform.position, rotation);
+        var instance = ObjectPool.Instance.GetFromPool("playerBullet", gun.transform.position, rotation);
         if(mouseDir != Vector3.zero)
             instance.GetComponent<Rigidbody2D>().velocity = mouseDir * bulletSpeed;
         else
